@@ -82,13 +82,25 @@ $$
 가 되고 이 수식을 역라플라스 변환을 시켜줘야하는데 매우 복잡하기 때문에 Matlab으로 진행하였다.  
 
 ```
-syms S m b k
-XS = (m*S + b) / (m*S^2 + b*S + k);
-xt = ilaplace(XS);
-disp('역라플라스:')
-disp(xt);
-역라플라스:
-exp(-(b*t)/(2*m))*(cosh((t*(b^2/4 - k*m)^(1/2))/m) + (b*sinh((t*(b^2/4 - k*m)^(1/2))/m))/(2*(b^2/4 - k*m)^(1/2)))
+syms S M m b k F
+
+A = [M*S^2 + b*S + k, -(b*S + k);
+     -(b*S + k), m*S^2 + b*S + k];
+
+A_inv = inv(A);
+
+B = [F; 0];
+
+Y = inv(A) * B;
+
+transfer_function = Y(2)/F;
+
+disp('A의 역행렬:');
+disp(A_inv);
+
+disp('Y(S)/F(S) = ');
+disp(transfer_function);
+
 ```
 
 최종적으로  
