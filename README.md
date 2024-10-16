@@ -164,33 +164,23 @@ $$
 ```
 syms S M m b k F
 
-% 행렬 A 정의
 A = [M*S^2 + b*S + k, -(b*S + k);
      -(b*S + k), m*S^2 + b*S + k];
 
-% 행렬 A의 역행렬 구하기
 A_inv = inv(A);
 
-% 입력 벡터 정의
 B = [F; 0];
 
 Y = inv(A) * B;
 
-% Y(S)/F(S) 계산
 transfer_function = Y(2)/F;
 
-% 결과 출력
 disp('A의 역행렬:');
 disp(A_inv);
 
 disp('Y(S)/F(S) = ');
 disp(transfer_function);
-A의 역행렬:
-[(m*S^2 + b*S + k)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4),         (k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)]
-[        (k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4), (M*S^2 + b*S + k)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)]
- 
-Y(S)/F(S) = 
-(k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)
+
 ```
 위의 연산을 통해 전달함수를 구할 수 있다.  
 
